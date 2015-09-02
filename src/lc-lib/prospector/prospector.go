@@ -311,7 +311,7 @@ func (p *Prospector) scan(path string, config *core.FileConfig) {
 		resume := !info.isRunning()
 		if resume {
 			if info.status == Status_Resume {
-                if fileinfo.ModTime().Before(p.lastscan) && time.Since(fileinfo.ModTime()) > config.DeadTime {
+                if time.Since(fileinfo.ModTime()) > config.DeadTime {
                     resume = false
                     log.Info("Skipping resume of file (older than dead time of %v): %s", config.DeadTime, file)
                 } else {
