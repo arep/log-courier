@@ -32,4 +32,4 @@ echo "${VERSION}" > version.txt
 # This file is used as the version if we download Log Courier as a non-git package
 echo "${VERSION_SHORT}" > version_short.txt
 
-echo "Set Log Courier Version ${VERSION}"
+echo "Set Log Courier Version ${VERSION} (${VERSION_SHORT})"
