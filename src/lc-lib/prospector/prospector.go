@@ -313,7 +313,7 @@ func (p *Prospector) scan(path string, config *core.FileConfig) {
 			if info.status == Status_Resume {
                 if time.Since(fileinfo.ModTime()) > config.DeadTime {
                     resume = false
-                    info.status = Status_Invalid
+                    info.status = Status_Ok
                     log.Info("Skipping resume of file (older than dead time of %v): %s", config.DeadTime, file)
                 } else {
     				// This is a filestate that was saved, resume the harvester
