@@ -274,7 +274,9 @@ func (p *Prospector) scan(path string, config *core.FileConfig) {
 			// Store the new entry
 			p.prospectors[info] = info
 		} else {
-			if !info.identity.SameAs(fileinfo) {
+            if info.status == Status_Resume && time.Since(fileinfo.ModTime()) > config.DeadTime {
+                
+            } else if !info.identity.SameAs(fileinfo) {
 				// Keep the old file in case we find it again shortly
 				info.orphaned = Orphaned_Maybe
 
@@ -305,7 +307,7 @@ func (p *Prospector) scan(path string, config *core.FileConfig) {
 				// Store it
 				p.prospectors[info] = info
 			}
-		}
+        }
 
 		// Resume stopped harvesters
 		resume := !info.isRunning()
