@@ -313,6 +313,7 @@ func (p *Prospector) scan(path string, config *core.FileConfig) {
 			if info.status == Status_Resume {
                 if time.Since(fileinfo.ModTime()) > config.DeadTime {
                     resume = false
+                    info.finish_offset = fileinfo.Size()
                     //log.Info("Skipping resume of file (older than dead time of %v): %s", config.DeadTime, file)
 					//info.finish_offset = fileinfo.Size()
 					//p.registrar_spool.Add(registrar.NewDiscoverEvent(info, file, fileinfo.Size(), fileinfo))
