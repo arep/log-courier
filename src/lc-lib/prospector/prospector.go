@@ -313,8 +313,9 @@ func (p *Prospector) scan(path string, config *core.FileConfig) {
 			if info.status == Status_Resume {
                 if time.Since(fileinfo.ModTime()) > config.DeadTime {
                     resume = false
-                    info.status = Status_Ok
-                    log.Info("Skipping resume of file (older than dead time of %v): %s", config.DeadTime, file)
+                    //log.Info("Skipping resume of file (older than dead time of %v): %s", config.DeadTime, file)
+					//info.finish_offset = fileinfo.Size()
+					//p.registrar_spool.Add(registrar.NewDiscoverEvent(info, file, fileinfo.Size(), fileinfo))
                 } else {
     				// This is a filestate that was saved, resume the harvester
     				log.Info("Resuming harvester on a previously harvested file: %s", file)
